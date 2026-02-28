@@ -17,7 +17,7 @@
 
         <!-- HOME -->
         <li class="nav-item">
-          <a class="nav-link active" href="/panel/dashboardadmin" aria-current="page">
+          <a class="nav-link {{ request()->is('panel/dashboardadmin') ? 'active' : '' }}" href="/panel/dashboardadmin" aria-current="page">
             <span class="nav-link-icon d-md-none d-lg-inline-block">
               <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="22" height="22" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                 <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
@@ -30,8 +30,11 @@
         </li>
 
         <!-- MASTER DATA DROPDOWN -->
+        @php
+          $masterActive = request()->is('karyawan') || request()->is('departemen');
+        @endphp
         <li class="nav-item">
-          <a class="nav-link dropdown-toggle" data-bs-toggle="collapse" href="#interfaceMenuMaster" role="button" aria-expanded="false" aria-controls="interfaceMenuMaster">
+          <a class="nav-link dropdown-toggle" data-bs-toggle="collapse" href="#interfaceMenuMaster" role="button" aria-expanded="{{ $masterActive ? 'true' : 'false' }}" aria-controls="interfaceMenuMaster">
             <span class="nav-link-icon d-md-none d-lg-inline-block">
               <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="22" height="22" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                 <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
@@ -40,15 +43,15 @@
             </span>
             <span class="nav-link-title">Master Data</span>
           </a>
-          <div class="collapse" id="interfaceMenuMaster">
+          <div class="collapse {{ $masterActive ? 'show' : '' }}" id="interfaceMenuMaster">
             <ul class="nav nav-sm flex-column ms-3 sidebar-submenu">
               <li class="nav-item">
-                <a class="nav-link" href="/karyawan">
+                <a class="nav-link {{ request()->is('karyawan') ? 'active' : '' }}" href="/karyawan">
                   <span class="bullet"></span>Karyawan
                 </a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="/departemen">
+                <a class="nav-link {{ request()->is('departemen') ? 'active' : '' }}" href="/departemen">
                   <span class="bullet"></span>Department
                 </a>
               </li>
@@ -58,7 +61,7 @@
 
         <!-- ATTENDANCE MONITORING -->
         <li class="nav-item">
-          <a class="nav-link" href="/presensi/monitoring">
+          <a class="nav-link {{ request()->is('presensi/monitoring') ? 'active' : '' }}" href="/presensi/monitoring">
             <span class="nav-link-icon d-md-none d-lg-inline-block">
               <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon">
                 <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
@@ -75,7 +78,7 @@
 
         <!-- LEAVE REQUEST -->
         <li class="nav-item">
-          <a class="nav-link" href="/presensi/izinsakit">
+          <a class="nav-link {{ request()->is('presensi/izinsakit') ? 'active' : '' }}" href="/presensi/izinsakit">
             <span class="nav-link-icon d-md-none d-lg-inline-block">
               <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon">
                 <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
@@ -91,8 +94,11 @@
         </li>
 
         <!-- REPORT DROPDOWN -->
+        @php
+          $reportActive = request()->is('presensi/laporan') || request()->is('presensi/rekap');
+        @endphp
         <li class="nav-item">
-          <a class="nav-link dropdown-toggle" data-bs-toggle="collapse" href="#interfaceMenuReport" role="button" aria-expanded="false" aria-controls="interfaceMenuReport">
+          <a class="nav-link dropdown-toggle" data-bs-toggle="collapse" href="#interfaceMenuReport" role="button" aria-expanded="{{ $reportActive ? 'true' : 'false' }}" aria-controls="interfaceMenuReport">
             <span class="nav-link-icon d-md-none d-lg-inline-block">
               <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon">
                 <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
@@ -104,15 +110,15 @@
             </span>
             <span class="nav-link-title">Report</span>
           </a>
-          <div class="collapse" id="interfaceMenuReport">
+          <div class="collapse {{ $reportActive ? 'show' : '' }}" id="interfaceMenuReport">
             <ul class="nav nav-sm flex-column ms-3 sidebar-submenu">
               <li class="nav-item">
-                <a class="nav-link" href="/presensi/laporan">
+                <a class="nav-link {{ request()->is('presensi/laporan') ? 'active' : '' }}" href="/presensi/laporan">
                   <span class="bullet"></span>Attendance Report
                 </a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="/presensi/rekap">
+                <a class="nav-link {{ request()->is('presensi/rekap') ? 'active' : '' }}" href="/presensi/rekap">
                   <span class="bullet"></span>Attendance Record
                 </a>
               </li>
@@ -121,8 +127,11 @@
         </li>
 
         <!-- CONFIGURATION DROPDOWN -->
+        @php
+          $configActive = request()->is('konfigurasi/lokasikantor');
+        @endphp
         <li class="nav-item">
-          <a class="nav-link dropdown-toggle" data-bs-toggle="collapse" href="#interfaceMenuConfig" role="button" aria-expanded="false" aria-controls="interfaceMenuConfig">
+          <a class="nav-link dropdown-toggle" data-bs-toggle="collapse" href="#interfaceMenuConfig" role="button" aria-expanded="{{ $configActive ? 'true' : 'false' }}" aria-controls="interfaceMenuConfig">
             <span class="nav-link-icon d-md-none d-lg-inline-block">
               <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon">
                 <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
@@ -132,10 +141,10 @@
             </span>
             <span class="nav-link-title">Configuration</span>
           </a>
-          <div class="collapse" id="interfaceMenuConfig">
+          <div class="collapse {{ $configActive ? 'show' : '' }}" id="interfaceMenuConfig">
             <ul class="nav nav-sm flex-column ms-3 sidebar-submenu">
               <li class="nav-item">
-                <a class="nav-link" href="/konfigurasi/lokasikantor">
+                <a class="nav-link {{ request()->is('konfigurasi/lokasikantor') ? 'active' : '' }}" href="/konfigurasi/lokasikantor">
                   <span class="bullet"></span>Office Location
                 </a>
               </li>
@@ -143,34 +152,122 @@
           </div>
         </li>
       </ul>
+    </div>
+  </div>
 </aside>
 
-<!-- Tambahkan CSS kecil untuk efek hover -->
+<!-- Tambahkan CSS yang telah ditingkatkan -->
 <style>
+  :root {
+    --sidebar-bg: #1a1e24;
+    --sidebar-hover: rgba(255, 255, 255, 0.05);
+    --sidebar-active-bg: linear-gradient(90deg, rgba(13,110,253,0.2) 0%, rgba(13,110,253,0.05) 100%);
+    --sidebar-active-border: #0d6efd;
+    --sidebar-icon-color: #a0a8b8;
+    --sidebar-text-color: #e0e5ec;
+    --sidebar-submenu-bg: rgba(0, 0, 0, 0.2);
+  }
+
+  .navbar-vertical {
+    background-color: var(--sidebar-bg) !important;
+    border-right: 1px solid rgba(255, 255, 255, 0.05);
+  }
+
   .navbar-vertical .nav-link {
+    position: relative;
     border-radius: 0.5rem;
-    margin-left: 0.5rem;
-    margin-right: 0.5rem;
+    margin: 0.25rem 0.5rem;
+    padding: 0.75rem 1rem;
+    color: var(--sidebar-text-color);
     transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
   }
+
   .navbar-vertical .nav-link:hover {
-    background-color: rgba(255, 255, 255, 0.1);
+    background-color: var(--sidebar-hover);
     transform: translateX(4px);
+    color: #ffffff;
   }
+
+  .navbar-vertical .nav-link:hover .nav-link-icon {
+    color: #ffffff;
+    opacity: 1;
+  }
+
+  /* Active link dengan garis tepi kiri dan gradasi */
   .navbar-vertical .nav-link.active {
-    background-color: var(--bs-primary) !important;
-    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+    background: var(--sidebar-active-bg);
+    border-left: 4px solid var(--sidebar-active-border);
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.2);
+    color: #ffffff;
+    font-weight: 500;
   }
+
   .navbar-vertical .nav-link.active .nav-link-icon {
-    opacity: 1 !important;
+    color: var(--sidebar-active-border);
+    opacity: 1;
   }
+
   .navbar-vertical .nav-link .nav-link-icon {
-    opacity: 0.75;
+    color: var(--sidebar-icon-color);
+    opacity: 0.9;
+    transition: all 0.2s;
+    width: 1.5rem;
+    text-align: center;
   }
+
+  .nav-link-title {
+    flex: 1;
+  }
+
+  /* Dropdown toggle arrow styling */
+  .dropdown-toggle::after {
+    border: none;
+    content: "›";
+    font-size: 1.2rem;
+    line-height: 1;
+    transform: rotate(90deg);
+    transition: transform 0.2s;
+    vertical-align: middle;
+    color: var(--sidebar-icon-color);
+  }
+
+  .dropdown-toggle[aria-expanded="true"]::after {
+    transform: rotate(270deg);
+  }
+
+  /* Submenu styling */
+  .sidebar-submenu {
+    background-color: var(--sidebar-submenu-bg);
+    border-radius: 0.5rem;
+    margin-top: 0.25rem;
+    margin-bottom: 0.25rem;
+    padding: 0.25rem 0;
+    list-style: none;
+  }
+
   .sidebar-submenu .nav-link {
-    padding-left: 1.2rem;
+    padding: 0.5rem 1rem 0.5rem 2rem;
+    margin: 0.125rem 0.25rem;
     font-size: 0.9rem;
+    border-left: none;
+    background: transparent;
+    position: relative;
   }
+
+  .sidebar-submenu .nav-link:hover {
+    background-color: rgba(255, 255, 255, 0.05);
+    transform: translateX(2px);
+  }
+
+  .sidebar-submenu .nav-link.active {
+    background: rgba(13, 110, 253, 0.1);
+    border-left: 3px solid var(--sidebar-active-border);
+    font-weight: 500;
+  }
+
   .bullet {
     display: inline-block;
     width: 6px;
@@ -178,6 +275,43 @@
     border-radius: 50%;
     background-color: currentColor;
     margin-right: 0.5rem;
-    opacity: 0.7;
+    opacity: 0.6;
+    transition: all 0.2s;
+  }
+
+  .sidebar-submenu .nav-link:hover .bullet {
+    opacity: 1;
+    transform: scale(1.2);
+  }
+
+  .sidebar-submenu .nav-link.active .bullet {
+    background-color: var(--sidebar-active-border);
+    opacity: 1;
+  }
+
+  /* Tambahkan garis pemisah antar menu (opsional) */
+  .navbar-nav > .nav-item:not(:last-child) {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+    margin-bottom: 0.25rem;
+    padding-bottom: 0.25rem;
+  }
+
+  /* Scrollbar halus untuk sidebar yang panjang */
+  .navbar-vertical {
+    scrollbar-width: thin;
+    scrollbar-color: rgba(255,255,255,0.2) transparent;
+  }
+
+  .navbar-vertical::-webkit-scrollbar {
+    width: 5px;
+  }
+
+  .navbar-vertical::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  .navbar-vertical::-webkit-scrollbar-thumb {
+    background-color: rgba(255,255,255,0.2);
+    border-radius: 20px;
   }
 </style>
