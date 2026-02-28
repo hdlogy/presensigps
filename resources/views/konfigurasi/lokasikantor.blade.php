@@ -5,7 +5,7 @@
             <div class="row g-2 align-items-center">
               <div class="col">
                 <!-- Page pre-title -->
-                
+                <div class="page-pretitle"></div><br>
                 <h2 class="page-title">Configuration Location</h2>
               </div>
             </div>

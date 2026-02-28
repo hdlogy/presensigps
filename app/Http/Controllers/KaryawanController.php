@@ -65,10 +65,11 @@ class KaryawanController extends Controller
 
                 return Redirect::back()->with(['success'=>'Data successfully saved']);
             }
-        } catch (\Exception $e) {
-            //dd($e->getMessage());
-            
-            return Redirect::back()->with(['warning'=>'Failed to save data']);
+        } catch (\Exception $e) {           
+            if($e->getCode()==23000){
+                $message="This ID number " .$nik. " is already in use.";
+            } 
+            return Redirect::back()->with(['warning'=>'Failed to save data, '.$message]);
             
 
         }
